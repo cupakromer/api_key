@@ -7,8 +7,6 @@ module APIKey
     klass.extend ClassMethods
   end
 
-  @default_api_key = nil
-
   attr_writer :api_key
 
   def api_key
