@@ -1,19 +1,15 @@
 require 'spec_helper'
 
-class APIKey
+class DummyClass
+  include APIKey
   @default_api_key = nil
   class << self
     attr_accessor :default_api_key
   end
-
-  attr_writer :api_key
-  def api_key
-    @api_key || self.class.default_api_key
-  end
 end
 
 describe APIKey do
-  let( :apiKeyClass ) { APIKey.dup }
+  let( :apiKeyClass ) { DummyClass.dup }
 
   context "for the Class" do
     it "sets the default key to nil" do
