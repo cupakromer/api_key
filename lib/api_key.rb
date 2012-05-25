@@ -1,6 +1,6 @@
 module APIKey
   module ClassMethods
-    attr_accessor :default_api_key
+    attr_accessor :api_key
   end
 
   def self.included( klass )
@@ -10,6 +10,6 @@ module APIKey
   attr_writer :api_key
 
   def api_key
-    @api_key || self.class.default_api_key
+    @api_key || self.class.api_key
   end
 end
