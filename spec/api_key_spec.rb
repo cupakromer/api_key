@@ -2,10 +2,6 @@ require 'spec_helper'
 
 class DummyClass
   include APIKey
-  @default_api_key = nil
-  class << self
-    attr_accessor :default_api_key
-  end
 end
 
 describe APIKey do
