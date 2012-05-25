@@ -6,8 +6,9 @@ class APIKey
     attr_accessor :default_api_key
   end
 
+  attr_writer :api_key
   def api_key
-    self.class.default_api_key
+    @api_key || self.class.default_api_key
   end
 end
 
@@ -38,13 +39,28 @@ describe APIKey do
     let( :uses_api_key ) { apiKeyClass.new }
 
     describe "#api_key" do
-      it "returns nil when no default key set" do
-        uses_api_key.api_key.should be_nil
+      context "no instance key set" do
+        it "returns nil when no default key set" do
+          uses_api_key.api_key.should be_nil
+        end
+
+        it "returns the default key" do
+          apiKeyClass.default_api_key = "a default key"
+          uses_api_key.api_key.should == "a default key"
+        end
       end
 
-      it "returns the default key when no instance key set" do
-        apiKeyClass.default_api_key = "a default key"
-        uses_api_key.api_key.should == "a default key"
+      context "instance key set" do
+        before( :each ) { uses_api_key.api_key = "an instance key" }
+
+        it "returns the instance key when no default key set" do
+          uses_api_key.api_key.should == "an instance key"
+        end
+
+        it "returns the instance key when default key set" do
+          apiKeyClass.default_api_key = "a default key"
+          uses_api_key.api_key.should == "an instance key"
+        end
       end
     end
   end
