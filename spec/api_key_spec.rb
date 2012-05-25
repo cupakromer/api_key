@@ -5,6 +5,8 @@ class DummyClass
 end
 
 describe APIKey do
+  before( :all ) { @DEFAULT_KEY = "a default key".freeze }
+
   let( :apiKeyClass ) { DummyClass.dup }
 
   context "for the Class" do
@@ -14,13 +16,13 @@ describe APIKey do
 
     describe "#default_api_key" do
       it "allows a default key to be set" do
-        apiKeyClass.default_api_key = "a default key"
-        apiKeyClass.default_api_key.should == "a default key"
+        apiKeyClass.default_api_key = @DEFAULT_KEY
+        apiKeyClass.default_api_key.should == @DEFAULT_KEY
       end
 
       it "retains only the last default key set" do
-        apiKeyClass.default_api_key = "a default key"
-        apiKeyClass.default_api_key.should == "a default key"
+        apiKeyClass.default_api_key = @DEFAULT_KEY
+        apiKeyClass.default_api_key.should == @DEFAULT_KEY
         apiKeyClass.default_api_key = "new key set"
         apiKeyClass.default_api_key.should == "new key set"
       end
@@ -37,21 +39,22 @@ describe APIKey do
         end
 
         it "returns the default key" do
-          apiKeyClass.default_api_key = "a default key"
-          uses_api_key.api_key.should == "a default key"
+          apiKeyClass.default_api_key = @DEFAULT_KEY
+          uses_api_key.api_key.should == @DEFAULT_KEY
         end
       end
 
       context "instance key set" do
-        before( :each ) { uses_api_key.api_key = "an instance key" }
+        before( :all  ) { @INSTANCE_KEY = "an instance key".freeze }
+        before( :each ) { uses_api_key.api_key = @INSTANCE_KEY     }
 
         it "returns the instance key when no default key set" do
-          uses_api_key.api_key.should == "an instance key"
+          uses_api_key.api_key.should == @INSTANCE_KEY
         end
 
         it "returns the instance key when default key set" do
-          apiKeyClass.default_api_key = "a default key"
-          uses_api_key.api_key.should == "an instance key"
+          apiKeyClass.default_api_key = @DEFAULT_KEY
+          uses_api_key.api_key.should == @INSTANCE_KEY
         end
       end
     end
