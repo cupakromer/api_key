@@ -63,22 +63,84 @@ module APIKey
     end
   end
 
+  # Automatically extend ClassMethods when including module
   def self.included( klass )
     klass.extend ClassMethods
   end
 
+  # Set the API Key for this specific instance object
   attr_writer :api_key
 
+  # Return the set API Key.
+  #
+  # If an API Key has been set on this object instance, then that is used.
+  # Otherwise the default (class) key will be used.
+  #
+  #
+  # Examples
+  #
+  #
+  #   class XyzService
+  #     include APIKey
+  #   end
+  #
+  #   service = XyzService.new
+  #
+  #
+  #   service.api_key
+  #   # => nil
+  #
+  #
+  #   XyzService.api_key = "a default key"
+  #   service.api_key
+  #   # => "a default key"
+  #
+  #
+  #   service.api_key = "an instance key"
+  #   service.api_key
+  #   # => "an instance key"
+  #
+  #
+  # Returns the API Key if set, otherwise nil.
   def api_key
     # We are not lazy loading the @api_key in order to preserve the
     # distinction between it and the default (class) key.
     @api_key || self.class.api_key
   end
 
+  # Return the set API key parameter options hash key.
+  #
+  # Returns the symbolized version set API Key parameter options hash key,
+  #   or nil if nothing was set.
   def api_key_param_name
     nil
   end
 
+  # Return an options hash with the API Key.
+  #
+  # Uses the set API Key parameter name symbol as the key and the result
+  # of calling #api_key as the value.
+  #
+  #
+  # Example
+  #
+  #
+  #   class XyzService
+  #     include APIKey
+  #
+  #     api_key_param_name :service_key
+  #   end
+  #
+  #   service = XyzService.new
+  #   service.api_key = "my special key"
+  #
+  #   service.api_key_option
+  #   # => { service_key: "my special key" }
+  #
+  #
+  # Returns the options hash with the API Key.
+  # Raises RuntimeError: "No API Key parameter name set" if
+  #   Class.api_key_param_name did not set a key value
   def api_key_option
     fail "No API Key parameter name set" unless api_key_param_name
     { api_key_param_name => api_key }
