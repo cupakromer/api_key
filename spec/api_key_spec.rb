@@ -11,20 +11,20 @@ describe APIKey do
 
   context "for the Class" do
     it "sets the default key to nil" do
-      apiKeyClass.default_api_key.should be_nil
+      apiKeyClass.api_key.should be_nil
     end
 
-    describe "#default_api_key" do
+    describe "#api_key" do
       it "allows a default key to be set" do
-        apiKeyClass.default_api_key = @DEFAULT_KEY
-        apiKeyClass.default_api_key.should == @DEFAULT_KEY
+        apiKeyClass.api_key = @DEFAULT_KEY
+        apiKeyClass.api_key.should == @DEFAULT_KEY
       end
 
       it "retains only the last default key set" do
-        apiKeyClass.default_api_key = @DEFAULT_KEY
-        apiKeyClass.default_api_key.should == @DEFAULT_KEY
-        apiKeyClass.default_api_key = "new key set"
-        apiKeyClass.default_api_key.should == "new key set"
+        apiKeyClass.api_key = @DEFAULT_KEY
+        apiKeyClass.api_key.should == @DEFAULT_KEY
+        apiKeyClass.api_key = "new key set"
+        apiKeyClass.api_key.should == "new key set"
       end
     end
   end
@@ -39,7 +39,7 @@ describe APIKey do
         end
 
         it "returns the default key" do
-          apiKeyClass.default_api_key = @DEFAULT_KEY
+          apiKeyClass.api_key = @DEFAULT_KEY
           uses_api_key.api_key.should == @DEFAULT_KEY
         end
       end
@@ -53,7 +53,7 @@ describe APIKey do
         end
 
         it "returns the instance key when default key set" do
-          apiKeyClass.default_api_key = @DEFAULT_KEY
+          apiKeyClass.api_key = @DEFAULT_KEY
           uses_api_key.api_key.should == @INSTANCE_KEY
         end
       end
