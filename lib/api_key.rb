@@ -1,6 +1,6 @@
 # Provides general support for web/REST classes working with API keys.
 #
-# Many different web API require the use of an API to interact with the
+# Many different web APIs require the use of a key to interact with the
 # service. Some 3rd party Ruby APIs have implemented their own specific
 # solution. Some set the key on the Class, others allow for each instance
 # to set the key. This module provides mix-in support for a generalizd
