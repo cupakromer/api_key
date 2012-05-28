@@ -20,4 +20,8 @@ module APIKey
   def api_key_param_name
     nil
   end
+
+  def api_key_param
+    { api_key_param_name => api_key }
+  end
 end
