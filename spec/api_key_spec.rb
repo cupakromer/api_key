@@ -102,7 +102,12 @@ describe APIKey do
     it 'returns the API key as a param option hash' do
       apiKeyClass.class_eval{ api_key_param_name :key }
       uses_api_key.api_key = @INSTANCE_KEY
-      uses_api_key.api_key_param.should == { key: @INSTANCE_KEY }
+      uses_api_key.api_key_option.should == { key: @INSTANCE_KEY }
+    end
+
+    it 'raises "No API Key parameter name set" if api_key_param_name is nil' do
+      uses_api_key.api_key = @INSTANCE_KEY
+      expect { uses_api_key.api_key_option }.to raise_error "No API Key parameter name set"
     end
   end
 end

@@ -23,7 +23,8 @@ module APIKey
     nil
   end
 
-  def api_key_param
+  def api_key_option
+    fail "No API Key parameter name set" unless api_key_param_name
     { api_key_param_name => api_key }
   end
 end
