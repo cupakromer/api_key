@@ -21,10 +21,43 @@
 #   end
 module APIKey
   module ClassMethods
+    # Sets the default key
     attr_accessor :api_key
 
     private
 
+    # Define instance method returning the parameter name to use for
+    # the API Key in the options hash.
+    #
+    #
+    # Will symbolize the provided name parameter when defining the method.
+    #
+    # name - The String or Symbol name to set the API Key hash key to
+    #
+    #
+    # Examples
+    #
+    #   class XyzService
+    #     include APIKey
+    #
+    #     api_key_param_name :service_key
+    #     # => def api_key_param_name
+    #     #      :service_key
+    #     #    end
+    #   end
+    #
+    #
+    #   class XyzService
+    #     include APIKey
+    #
+    #     api_key_param_name "string_service_key"
+    #     # => def api_key_param_name
+    #     #      :string_service_key
+    #     #    end
+    #   end
+    #
+    #
+    # Returns nothing
     def api_key_param_name( name )
       define_method( :api_key_param_name ) { name.to_sym }
     end
