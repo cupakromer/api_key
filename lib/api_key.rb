@@ -3,6 +3,7 @@ module APIKey
     attr_accessor :api_key
 
     private
+
     def api_key_param_name( name )
       define_method( :api_key_param_name ) { name.to_sym }
     end
@@ -13,6 +14,7 @@ module APIKey
   end
 
   attr_writer :api_key
+
   def api_key
     @api_key || self.class.api_key
   end

@@ -24,7 +24,7 @@ describe APIKey do
 
   describe ".api_key" do
     it "retains only the last default key set" do
-      [ @DEFAULT_KEY, 'another key', 'new key set' ].each do |key|
+      [ @DEFAULT_KEY, 'another key', 'new key set', ].each do |key|
         apiKeyClass.api_key = key
       end
 
@@ -69,7 +69,7 @@ describe APIKey do
 
       context "when default (class) key set" do
         it "returns the last default (class) key set" do
-          [ @DEFAULT_KEY, 'another key', 'new key set' ].each do |key|
+          [ @DEFAULT_KEY, 'another key', 'new key set', ].each do |key|
             apiKeyClass.api_key = key
           end
 
