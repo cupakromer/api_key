@@ -17,8 +17,7 @@ Installing
 ```bash
 git clone git://github.com/cupakromer/api_key.git
 cd api_key
-rake gem # OR rake install??
-gem install pkg/api_key.gem
+rake install
 ```
 
 When using [Bundler](http://gembundler.com "Bundler Home"):
