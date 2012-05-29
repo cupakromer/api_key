@@ -8,7 +8,7 @@
 #
 # Author::    Aaron Kromer (https://github.com/cupakromer)
 # Copyright:: Copyright (c) 2012
-# License::   Distributes under the same terms as Ruby
+require 'api_key/version'
 
 # Mix-in module for providing support to work with API keys.
 #
