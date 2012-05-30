@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/cupakromer/api_key"
 
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "rake"
 
   gem.has_rdoc      = true
   gem.license       = 'MIT'
