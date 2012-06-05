@@ -38,6 +38,8 @@ Using
 Just mix-in the module:
 
 ```ruby
+require 'api_key'
+
 class XyzService
   include APIKey
 end
