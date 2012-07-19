@@ -1,7 +1,7 @@
 API Key
 =======
 
-[![Build Status](https://secure.travis-ci.org/cupakromer/api_key.png?branch=master)](http://travis-ci.org/cupakromer/api_key)
+[![Build Status](https://secure.travis-ci.org/cupakromer/api_key.png?branch=master)](http://travis-ci.org/cupakromer/api_key) [![Dependency Status](https://gemnasium.com/cupakromer/api_key.png?travis)](https://gemnasium.com/cupakromer/api_key) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/cupakromer/api_key)
 
 Ruby mix-in providing general support for using API keys with web
 interfaces.
@@ -16,7 +16,7 @@ signature for working with these types of APIs.
 Installing
 ----------
 
-Get the latest version (you will need rake or just run `bundle` after
+Get the latest version (you will need `rake` or just run `bundle` after
 cloning):
 
 ```bash
